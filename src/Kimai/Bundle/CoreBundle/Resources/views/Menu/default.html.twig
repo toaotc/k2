@@ -1,0 +1,12 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% block label %}
+{% spaceless %}
+    {% if options.allow_safe_labels and item.getExtra('safe_label', false) %}
+        {{ item.label|trans({}, item.getExtra('translation_domain'))|raw }}
+    {% else %}
+        {{ item.label|trans({}, item.getExtra('translation_domain')) }}
+    {% endif %}
+
+{% endspaceless %}
+{% endblock %}

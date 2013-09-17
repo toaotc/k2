@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="kimai_core.table_prefix">kimaii_</parameter>
+        <parameter key="kimai_core.table_prefix_subscriber.class">Kimai\Bundle\CoreBundle\Doctrine\TablePrefixSubscriber</parameter>
+    </parameters>
+
+    <services>
+        <service id="kimai_core.table_prefix_subscriber" class="%kimai_core.table_prefix_subscriber.class%">
+            <argument>%kimai_core.table_prefix%</argument>
+            <tag name="doctrine.event_subscriber" />
+        </service>
+    </services>
+</container>

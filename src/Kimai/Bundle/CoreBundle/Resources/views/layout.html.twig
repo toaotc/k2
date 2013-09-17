@@ -1,0 +1,82 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        {{ block('mainnav') }}
+        {% block header %}{% endblock %}
+        {% block content %}{% endblock %}
+        {% block footer %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+{% spaceless %}
+    {{ parent() }}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% stylesheets
+        'bower_components/bootstrap/dist/css/bootstrap.css'
+        'bower_components/bootstrap/dist/css/bootstrap-theme.css'
+        'bundles/kimaicore/css/main.css'
+        filter='cssrewrite'
+        output='css/compiled/kimai/core.css'
+    %}
+        <link href="{{ asset_url }}" rel="stylesheet" type="text/css">
+    {% endstylesheets %}
+{% endspaceless %}
+{% endblock %}
+
+{% block javascripts %}
+{% spaceless %}
+    {{ parent() }}
+    {#<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->#}
+    <!--[if lt IE 9]>
+    {% javascripts
+        'bower_components/bootstrap/assets/js/html5shiv.js'
+        'bower_components/bootstrap/assets/js/respond.min.js'
+        output='js/compiled/kimai/core_lt_ie9.js'
+    %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+    <![endif]-->
+
+    {% javascripts
+        'bower_components/jquery/jquery.js'
+        'bower_components/bootstrap/dist/js/bootstrap.js'
+        output='js/compiled/kimai/core.js'
+    %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+{% endspaceless %}
+{% endblock %}
+
+{% block mainnav %}
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                {% for a in 0..2 %}<span class="icon-bar"></span>{% endfor %}
+            </button>
+            <a class="navbar-brand" href="{{ path('kimai_core_default_index') }}">
+                Kimai
+                <small>{{ 'open source time tracking'|capitalize }}</small>
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-main-collapse">
+            {{ knp_menu_render('KimaiCoreBundle:MenuBuilder:buildMainMenu', {'template': 'KimaiCoreBundle:Menu:navbar.html.twig'}) }}
+            {% if app.user %}
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {{ 'Logged in as %name%'|trans({'%name%': '<strong>' ~ app.user.username|e ~ '</strong>'})|raw }}
+                        <b class="caret"></b>
+                    </a>
+                    {{ knp_menu_render('KimaiCoreBundle:MenuBuilder:buildUserMenu', {'template': 'KimaiCoreBundle:Menu:dropdown.html.twig'}) }}
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+{% endblock %}

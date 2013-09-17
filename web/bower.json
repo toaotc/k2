@@ -1,0 +1,11 @@
+{
+  "name": "web",
+  "version": "0.0.0",
+  "authors": [
+    "Enrico Thies <enrico.thies@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.0.0"
+  }
+}

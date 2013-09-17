@@ -1,0 +1,10 @@
+login:
+    username:       Benutzername
+    password:       Passwort
+    remember_me:    Angemeldet bleiben
+    button:         Anmelden
+
+'Bad credentials':  Benutzername oder Passwort falsch
+
+logout:
+    button:         'Abmelden'

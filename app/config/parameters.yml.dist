@@ -1,0 +1,23 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    users:
+        user:
+            password: aac9692b441b92d32c4378a07c06e2c076bf21ba48af2988caea111f864cd38d4051c282cc33da9d96ba673b508c2b38ca63b1ea678665dd156f8532bde6df8f
+            roles: [ROLE_USER]
+        admin:
+            password: ed5e24338ceb3396086c123267bcd807965954e97fa12473722fa8eea5cb8cd64d744ae9515d5413f972aea2646e702e56d989733dc75554fe9c55c284e0ba7c
+            roles: [ROLE_ADMIN]

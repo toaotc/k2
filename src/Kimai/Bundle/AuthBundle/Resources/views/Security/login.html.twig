@@ -1,0 +1,45 @@
+{% extends 'KimaiCoreBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4" style="margin-top:15%;">
+            <form role="form" action="{{ path('kimai_auth_security_check') }}" method="post"{% if error %} class="has-error"{% endif %}>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="control-label input-group-addon" for="username">{{ 'login.username'|trans({}, 'KimaiAuth') }}</label>
+                        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                    </div>
+                </div>
+
+                {% if error %}
+                <div class="form-group">
+                    <span class="help-block">{{ error.message|trans({}, 'KimaiAuth') }}</span>
+                </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="control-label input-group-addon" for="password">{{ 'login.password'|trans({}, 'KimaiAuth') }}</label>
+                        <input class="form-control" type="password" id="password" name="_password" required="required" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label for="remember_me">{{ 'login.remember_me'|trans({}, 'KimaiAuth') }}</label>
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-default btn-lg" type="submit">
+                        <span class="glyphicon glyphicon-log-in"></span>
+                        {{ 'login.button'|trans({}, 'KimaiAuth') }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

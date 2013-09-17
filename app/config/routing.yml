@@ -1,0 +1,14 @@
+kimai_auth:
+    resource: "@KimaiAuthBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+kimai_time_tracking:
+    resource: "@KimaiTimeTrackingBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+kimai_core:
+    resource: "@KimaiCoreBundle/Controller/"
+    type:     annotation
+    prefix:   /
